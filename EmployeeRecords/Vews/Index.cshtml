@@ -1,0 +1,52 @@
+﻿@model IEnumerable<EmployeeRecords.Models.EmployeeViewModel>
+@using EmployeeRecords.Models
+@using EmployeeRecords.Code
+
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Employees</div>
+    <div class="panel-body">
+        <div class="btn-group">
+            <a id="createEditEmployeeModal" data-toggle="modal" asp-action="AddEmployee" data-target="#modal-action-customer" class="btn btn-primary">
+                <i class="glyphicon glyphicon-plus"></i>  Add Employee
+            </a>
+        </div>
+        <div class="top-buffer"></div>
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>PersonId</th>
+                    <th>EmployeeNo</th>
+                    <th>EmployeeDate</th>
+                    <th>TerminationDate</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.PersonId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EmployeeNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EmployeeDate)</td> 
+                        <td>@Html.DisplayFor(modelItem => item.TerminatedDate)</td>
+                        <td>
+                            <a id="createEditEmployeeModal" data-toggle="modal" asp-action="AddEmployee" asp-route-id= "@item.EmployeeId" data-target="#modal-action-customer" 
+                               class="btn btn-info">
+                                <i class="glyphicon glyphicon-pencil"></i>  Edit
+                            </a>
+                            <a id="createEditEmployeeModal" data-toggle="modal" asp-action="DeleteEmployee" asp-route-id= "@item.EmployeeId" data-target="#modal-action-customer" class="btn btn-danger">
+                                <i class="glyphicon glyphicon-trash"></i>  Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action-customer", AreaLabeledId = "modal-action-customer-label", Size = ModalSize.Medium })
+@section scripts
+{
+    <script src="~/js/employee-index.js" asp-append-version="true"></script>
+}

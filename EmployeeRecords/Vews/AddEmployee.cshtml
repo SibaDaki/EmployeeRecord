@@ -1,0 +1,35 @@
+﻿@model EmployeeRecord.Models.EmployeeViewModel
+@using EmployeeRecord.Models
+
+
+<form asp-action="AddEmployee" role="form">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = String.Format("{0} Employee", @Model.EmployeeId == 0 ? "Add" : "Edit") })
+
+    <div class="modal-body form-horizontal">
+        <div class="form-group">
+            <label asp-for="PersonId" class="col-lg-3 col-sm-3 control-label"></label>
+            <div class="col-lg-6">
+                <input asp-for="PersonId" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="EmployeeNo" class="col-lg-3 col-sm-3 control-label"></label>
+            <div class="col-lg-6">
+                <input asp-for="EmployeeNo" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="EmployeeDate" class="col-lg-3 col-sm-3 control-label"></label>
+            <div class="col-lg-6">
+                <input asp-for="EmployeeDate" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TerminationDate" class="col-lg-3 col-sm-3 control-label"></label>
+            <div class="col-lg-6">
+                <input asp-for="TerminationDate" class="form-control" />
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>
